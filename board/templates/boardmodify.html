@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Header-->
+	<header class="bg-dark py-5">
+	    <div class="container px-4 px-lg-5 my-5">
+	        <div class="text-center text-white">
+	            <h1 class="display-4 fw-bolder">B O A R D</h1>
+	            <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+	        </div>
+	    </div>
+	</header>
+	<br><br><br><br>
+        <h2 align="center"> 비밀번호 확인 </h2>
+        <br>
+        <div class="container">
+        {% csrf_token %}
+        <form method="post" action="" name="passwdform">
+            <input type="hidden" name="num" value="{{num}}">
+            <input type="hidden" name="pagenum" value="{{pagenum}}">
+            <input type="hidden" name="number" value="{{number}}">
+            <table border="1" class="table">
+                <tr>
+                    <th colspan="2">
+                        {% if not message %}
+                                                비밀번호를 확인해주세요
+                        {% endif %}
+                        {% if message %}
+                            {{ message }}
+                        {% endif %}
+                    </th>
+                </tr>
+                <tr>
+                    <th> 비밀번호 </th>
+                    <td> <input type="password" name="passwd"> </td>
+                </tr>           
+            </table>
+            <tr>
+				<div align="right">
+					<input type="submit" class="btn btn-outline-dark" value="확인">
+					<input type="button" class="btn btn-outline-dark" value="목록" onclick="location='boardlist?pagenum={{pagenum}}'">
+				</div>
+			</tr>       
+        </form>
+        </div>
+        <br><br><br><br>
+{% endblock %}

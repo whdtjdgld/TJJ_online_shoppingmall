@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+        <!-- Product section-->
+        <section class="py-5">
+         
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+               		
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{prod.image.url}}" alt="..."></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">{{prod.pname}}</h1>
+                        <div class="fs-5 mb-5">
+                            <br>
+                            <b><span>{{prod.price}} 원</span></b>
+                        </div>
+                        <p class="lead">{{prod.psum}}</p><br><br>	
+                        <div class="d-flex">
+                            
+                            <!-- 수량 증감
+                            <button type ="button" onclick="fnCalCount('p',this);">+</button>
+					        <input class="form-control text-center me-3" id="inputQuantity" type="text" name="pop_out" value="0" readonly="readonly" style="text-align:center;"/>
+					        <button type="button" onclick="fnCalCount('m', this);">-</button>
+					         -->
+					         {% if memid %}
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit" onclick="location='/order/cart?user_id={{memid}}&pnum={{prod.pnum}}'">Add to cart</button>
+                            {% endif %}
+                            {% if not memid %}
+                            <!-- {% csrf_token %}
+                           	{{form}}
+                            {% if request.GET.next %}
+                            	<input type="hidden" name="next" value="{{next}}">
+                            {% endif %} -->
+                            <!-- <script>
+                            function redirect() {
+                            	window.location.href = "/member/login?next=/product/plist?pnum={{pnum}}";
+                            }
+                            </script> -->
+                            <a class="btn btn-outline-dark flex-shrink-0" href="/member/login">Add to cart</a>
+                            <!-- <script>
+                            function redirect() {
+                            	window.history.back();
+                            	// location.href = "/product/plist?pnum={{pnum}}";
+                            }
+                            </script> 
+                            /product/plist?pnum={{pnum}}-->
+                            <!-- ?next={{ request.path }}" type="hidden" name="next" value="{{request.path}} -->
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+         <script src="{% static 'jquery-3.6.0.js' %}"></script>
+         <script src="{% static 'script.js' %}"></script>
+         <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+      <!-- Website CSS style -->
+       <link rel="stylesheet" type="text/css" href="{% static 'join.css' %}">
+
+      <!-- Website Font style -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+      
+      <!-- Google Fonts -->
+      <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+      <title>TJoeun JEW</title>
+   </head>
+	<body>
+	<div class="container">
+         <div class="row main">
+            <div class="panel-heading">
+                  <div class="panel-title text-center">
+                  <h1 class="title">회원정보수정</h1>
+		<form class="form-horizontal" name="passform" method="POST" action="" style="width:auto; padding-left:400px; padding-right:400px;">
+			{% csrf_token %}
+			<table class="form-group">
+				<tr>
+					<th colspan="2">
+						{% if message %}
+							{{message}}
+						{% endif %}
+						{% if not message %}
+							비밀번호를 입력하세요
+						{% endif %}
+					</th>
+				</tr>
+				<div class="form-group">
+                     <label class="cols-sm-2 control-label">비밀번호</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                           <input type="password" class="form-control" name="password"  placeholder="비밀번호를 입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+				<tr>
+					<th colspan="2">
+						<input type="submit" value="수정" onclick="window.close()">
+						<input type="reset" value="취소" onclick="location='main'">
+					</th>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

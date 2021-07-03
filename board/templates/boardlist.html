@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load mathfilters %}
+<!-- Header-->
+	<header class="bg-dark py-5">
+	    <div class="container px-4 px-lg-5 my-5">
+	        <div class="text-center text-white">
+	            <h1 class="display-4 fw-bolder">B O A R D</h1>
+	            <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+	        </div>
+	    </div>
+	</header>
+	<br><br><br><br>
+        <h2 align="center" font-family="var(--bs-font-sans-serif)"> 목록 ( Total : {{count}} ) </h2>
+        <div class="container">
+        <table border="1" class="table">
+        <br>
+            <tr style="text-align:center">
+                <th style="width:8%"> 글번호 </th>
+                <th style="width:40%"> 제목 </th>
+                <th style="width:8%"> 조회수 </th>
+                <th style="width:15%"> 작성자 </th>
+                <th style="width:15%"> 작성일 </th>  
+                <th style="width:15%"> IP </th>                
+            </tr>
+            {% if count == 0 %}
+                <tr>
+                    <td style="text-align:center" colspan="6">
+                                            게시판에 글이 없습니다. 글쓰기를 눌러주세요.
+                    </td>
+                </tr>    
+            {% endif %}        
+            {% if count != 0 %}
+                {% for dto in dtos %}
+                    <tr>
+                        <td style="text-align:center"> 
+                            {{number|sub:forloop.counter0}}                                   
+                        </td>
+                        <td> 
+                            {% if dto.relevel > 1 %}
+                                <img src="{% static 'images/level.gif'%}" border="0" width="{{dto.relevel|mul:7}}">
+                            {% endif %}
+                            {% if dto.relevel > 0 %}
+                                <img src="{% static 'images/re.gif'%}" border="0" width="15">
+                            {% endif %}   
+                            {% if dto.readcount == -1 %}
+                                {{dto.subject}}
+                            {% endif %}  
+                            {% if dto.readcount != -1 %}                           
+                                <a href="detail?num={{dto.num}}&pagenum={{pagenum}}&number={{number|sub:forloop.counter0}}">
+                                    {{dto.subject}}
+                                </a> 
+                            {% endif %}    
+                        </td>
+                        <td style="text-align:center"> 
+                            {% if dto.readcount == -1 %}
+                                &nbsp;
+                            {% endif %}
+                            {% if dto.readcount != -1 %}
+                                {{dto.readcount}}    
+                            {% endif %}                             
+                        </td>
+                        <td style="text-align:center"> 
+                            {{dto.writer}} 
+                        </td>
+                        <td style="text-align:center"> 
+                            {{dto.regdate|date:"Y-m-d"}} 
+                        </td>
+                        <td style="text-align:center"> 
+                            {{dto.ip}} 
+                        </td>                        
+                    </tr>                
+                {% endfor %}
+            {% endif %}
+        </table>
+        <div class="line">
+        </div>
+        <div align="right">
+        <input type="button" class="btn btn-outline-dark" onclick="location='write'" value="글쓰기">
+        </div>
+        </div>
+        <br>
+        <br>
+        <div align="center">
+        {% if startpage > pageblock %}
+            <a href="boardlist?pagenum={{startpage|sub:pageblock}}">◀</a>
+        {% endif %}
+        {% for page in pages %}        
+            {% if pagenum == page %}
+                <b>[{{page}}]</b>
+            {% endif %}    
+            {% if pagenum != page %}
+                <a href="boardlist?pagenum={{page}}">[{{page}}]</a>
+            {% endif %}
+        {% endfor %}
+        {% if endpage < pagecount %}
+            <a href="boardlist?pagenum={{startpage|add:pageblock}}">▶</a>
+        {% endif %}
+        </div>
+        <br><br><br><br>  
+{% endblock %}

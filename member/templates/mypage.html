@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+	<!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">TJ JEW</h1>
+                <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+            </div>
+        </div>
+    </header>
+	<!-- Section-->
+	<br><br>
+    <h5 class="display-4 fw-bolder" align="center" style="font-size:2.5em" >MY PAGE</h5>
+    <br><br><br><br><br>
+    <form align="center" >
+    	<div vertical-align="center">
+	         <!-- <button class="btn btn-outline-dark" class="" onclick="location='/order/cart_view?user_id={{memid}}'">
+	             <a class="dropdown-item" href="/order/cart_view?user_id={{memid}}">Cart</a>
+	         </button> -->
+	         <input type="button" class="btn btn-outline-dark" onclick="location='orderlist'" value="구매내역">
+	         <input type="button" class="btn btn-outline-dark" onclick="location='modify?user_id={{memid}}'" value="회원정보수정">
+	         <input type="button" class="btn btn-outline-dark" onclick="location='delete'" value="회원탈퇴">
+	         <br><br><br><br><br><br><br><br>
+         </div>
+         
+     </form>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   
+    <head>
+       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <meta charset="utf-8">    
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <script src="{% static 'jquery-3.6.0.js' %}"></script>     
+        <script src="{% static 'script.js' %}"></script>
+        <title>로그인</title>
+    </head>
+   <body>
+       <div id="login">
+           <div class="container">
+               <div id="login-row" class="row justify-content-center align-items-center">
+                   <div id="login-column" class="col-md-6">
+                       <div id="login-box" class="col-md-12">
+                           <form id="login-form" name="loginform" class="form" action="" method="post">
+                           {% csrf_token %}
+                               <h3 class="text-center text-info">로그인</h3> 
+                               <div class="form-group">
+                                   <label for="user_id" class="text-info">아이디</label><br>
+                                   <input type="text" name="user_id" id="user_id" class="form-control">
+                                   <tr>
+                                   <th colspan="2">
+                                       {% if message %}
+                                           <span>{{message}}</span>
+                                       {% endif %}
+                                       {% if not message %}
+                                           <span>로그인 정보를 입력하세요</span>
+                                       {% endif %}
+                                   </th>
+                               </tr>
+                               </div>
+                               <div class="form-group">
+                                   <label for="password" class="text-info">비밀번호</label><br>
+                                   <input type="password" name="password" class="form-control">
+                               </div>
+                               <div class="form-group">
+                                <br><br>
+                                   <input type="hidden" name="next" value="{{ next }}">
+                                   <input type="submit" class="btn btn-info btn-md" value="로그인">
+                                   
+                                   <!-- <script>
+		                            function redirect() {
+		                            	history.go(-1);
+		                            	// location.href = "/product/plist?pnum={{pnum}}";
+		                            }
+		                            </script> -->
+                                   <!-- <input type="button" class="btn btn-outline-dark flex-shrink-0" onclick="history.go(-1)" value="Add to cart"> -->
+                                   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                   <a href="main" class="btn btn-info btn-md">메인페이지</a>
+                                   &emsp;&emsp;&emsp;&emsp;&emsp;
+                                   <a href="join" class="btn btn-info btn-md">회원가입</a>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </body>
+</html>

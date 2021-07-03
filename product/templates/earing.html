@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+{% load mathfilters %}
+	<!-- Header-->
+	<header class="bg-dark py-5">
+	    <div class="container px-4 px-lg-5 my-5">
+	        <div class="text-center text-white">
+	            <h1 class="display-4 fw-bolder">E A R R I N G</h1>
+	            <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+	        </div>
+	    </div>
+	</header>
+		<!-- Section-->
+	<section class="py-5">
+	    <div class="container px-4 px-lg-5 mt-5">
+	        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	            {% for prod in prods %}
+               <div class="col mb-5">
+                   <div class="card h-100">
+                   {% if prod.image %}
+                       <!-- Product image-->
+                       <img class="card-img-top" src="{{prod.image.url}}" alt="...">
+                       {% endif %}
+	                    <!-- Product details-->
+	                    <div class="card-body p-4">
+	                        <div class="text-center">
+	                            <!-- Product name-->
+	                            <h5 class="fw-bolder">{{ prod.pname }}</h5>
+	                            <!-- Product price-->
+	                           {{prod.price}} 원
+	                        </div>
+	                    </div>
+	                    <!-- Product actions-->
+	                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/plist?pnum={{prod.pnum}}">Details</a></div>
+	                    </div>
+	                </div>
+	            </div>
+	        {% endfor %}
+	</section>
+		<div align='center'>
+		    {% if startpage > pageblock %}
+            <a href="earring?pagenum={{startpage|sub:pageblock}}">◀</a>
+        {% endif %}
+        {% for page in pages %}        
+            {% if pagenum == page %}
+                <b>[{{page}}]</b>
+            {% endif %}    
+            {% if pagenum != page %}
+                <a href="earring?pagenum={{page}}">[{{page}}]</a>
+            {% endif %}
+        {% endfor %}
+        {% if endpage < pagecount %}
+            <a href="earring?pagenum={{startpage|add:pageblock}}">▶</a>
+        {% endif %} 
+        </div><br><br>
+{% endblock %}

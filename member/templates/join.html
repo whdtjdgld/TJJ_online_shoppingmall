@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+            <script src="{% static 'jquery-3.6.0.js' %}"></script>
+         <script src="{% static 'script.js' %}"></script>
+      <!-- Website CSS style -->
+       <link rel="stylesheet" type="text/css" href="{% static 'join.css' %}">
+
+      <!-- Website Font style -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+      
+      <!-- Google Fonts -->
+      <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+      <title>회원가입</title>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row main">
+            <div class="panel-heading">
+                  <div class="panel-title text-center">
+                        <h1 class="title">회원가입</h1>
+                        <hr />
+                     </div>
+               </div> 
+               
+            <div class="main-login main-center">
+               <form class="form-horizontal" name="joinform" method="POST" action="" style="width:auto; padding-left:400px; padding-right:400px;">
+                  {% csrf_token %}
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">아이디</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                        
+                           <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                           <input type="text" class="form-control" name="user_id" placeholder="아이디를 입력하세요"/>
+                           <input type="button" class="confirm" value="중복확인">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">비밀번호</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                           <input type="password" class="form-control" name="password"  placeholder="비밀번호를 입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">비밀번호 확인</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                           <input type="password" class="form-control" name="password1"  placeholder="비밀번호를 다시입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">이름</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <input type="text" class="form-control" name="name"  placeholder="이름을 입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">이메일</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                           <input type="email" class="form-control" name="email"  placeholder="이메일을 입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">전화번호</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <input type="tel" class="form-control" name="tel"  placeholder="전화번호를 입력하세요"/>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">생년월일</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <input type="date" class="form-control" name="birth"  placeholder="ex) 1995-05-09"/>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">성별</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <select class="form-control" name="gender">
+                               <option value="남성">남성</option>
+                                    <option value="여성">여성</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">주소</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <select class="form-control" name="address">
+                                <option value="경기도">경기도</option>
+                                    <option value="강원도">강원도</option>
+                                    <option value="충청북도">충청북도</option>
+                                    <option value="충청남도">충청남도</option>
+                                    <option value="전라북도">전라북도</option>
+                                    <option value="전라남도">전라남도</option>
+                                    <option value="경상북도">경상북도</option>
+                                    <option value="경상남도">경상남도</option>
+                                    <option value="제주도">제주도</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>   
+                     
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">선호스타일</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <select class="form-control" name="style">
+                               <option value="하객룩">하객룩</option>
+                                    <option value="데일리">데일리</option>
+                                    <option value="오피스">오피스</option>
+                                    <option value="캐주얼">캐주얼</option>
+                                    <option value="스트릿">스트릿</option>
+                                    <option value="기타">기타</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="form-group">
+                     <label class="cols-sm-2 control-label">직업</label>
+                     <div class="cols-sm-10">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           <select class="form-control" name="job">
+                                    <option value="학생">학생</option>
+                                    <option value="주부">주부</option>
+                                    <option value="전문직">전문직</option>
+                                    <option value="회사원">회사원</option>
+                                    <option value="자영업">자영업</option>
+                                    <option value="기타">기타</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div><br>         
+                  <div class="form-group ">
+                     <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="회원가입">&nbsp;
+                  </div>
+                  <div class="login-register">
+                        <a href="login">로그인하러가기</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="main">메인으로돌아가기</a>
+                        <br><br><br>
+                     </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+   </body>
+</html>

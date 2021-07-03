@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Header-->
+	<header class="bg-dark py-5">
+	    <div class="container px-4 px-lg-5 my-5">
+	        <div class="text-center text-white">
+	            <h1 class="display-4 fw-bolder">B O A R D</h1>
+	            <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+	        </div>
+	    </div>
+	</header>
+	<br><br><br><br>
+    	<h2 align="center">글 삭제</h2>
+    	<br>
+    	<div class="container">
+    	{% csrf_token %}
+		<form method="POST" action="boarddelete" name="deleteform">
+			<input type="hidden" name="num" value="{{num}}">
+			<input type="hidden" name="pagenum" value="{{pagenum}}">
+			<table border="1" class="table">
+				<tr>
+					<th colspan="2">
+						{% if not message %}
+						비밀번호를 다시 확인하세요.
+						{% endif %}
+						{% if message %}
+						비밀번호가 다릅니다.
+						{% endif %}
+					</th>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="passwd"></td>
+				</tr>
+			</table>
+			<tr>
+				<div align="right">
+					<input type="submit" class="btn btn-outline-dark" value="삭제">
+					<input type="button" class="btn btn-outline-dark" value="목록" onclick="location='boardlist'">
+				</div>
+			</tr>
+		</form>
+		</div>
+		<br><br><br><br>
+{% endblock %}

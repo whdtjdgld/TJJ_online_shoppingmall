@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+{% load mathfilters %}
+     <!-- Header-->
+        <div class="container">
+             <div class="row">
+                 <div class="col-12">
+                     <div class="card">
+                         <div class="card-body p-0">
+                             <div class="row p-5">
+                                 <div class="col-md-6">
+                                     <h4 class="display-4 fw-bolder" style="font-size:2.0em">{{member.name}}님의 구매 내역입니다.</h4>
+                                 </div>
+                                 <div class="col-md-6 text-right">
+                                 <p class="font-weight-bold mb-4">주문자 정보</p>
+                                 <p class="font-weight-bold mb-1">{{member.name}}님 환영합니다.</p>
+                                     <p class="mb-1">아이디 : {{member.user_id}}</p>
+                                     <p class="mb-1">주소 : 대한민국, {{member.address}}</p>
+                                     <p class="mb-1">전화번호 : {{member.tel}}</p>
+                                     <p class="mb-1">성별 : {{member.gender}}</p>
+                                     <p class="mb-1">생년월일: {{member.birth}}</p>
+                                 </div>
+                             </div>
+                             <hr class="my-5">
+                             <div class="row p-5">
+                                 <div class="col-md-12">
+                                     <table class="table">
+                                         <thead>
+                                             <tr>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">상품코드</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">상품명</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">가격</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">수량</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">합계</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">주문날짜</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                        {% for i in buy %}
+                                             <tr>
+                                                 <td>{{i.pnum}}</td>
+                                                 <td>{{i.pname}}</td>
+                                                 <td>{{i.price}}원</td>
+                                                 <td>{{i.quan}}</td>
+                                                 <td>{{i.price|mul:i.quan}}원</td>
+                                                 <td>{{i.pay}}</td>
+                                             </tr>
+                                        {% endfor %}
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                             <div align="center">
+					        {% if startpage > pageblock %}
+					            <a href="orderlist?pagenum={{startpage|sub:pageblock}}">◀</a>
+					        {% endif %}
+					        {% for page in pages %}        
+					            {% if pagenum == page %}
+					                <b>[{{page}}]</b>
+					            {% endif %}    
+					            {% if pagenum != page %}
+					                <a href="orderlist?pagenum={{page}}">[{{page}}]</a>
+					            {% endif %}
+					        {% endfor %}
+					        {% if endpage < pagecount %}
+					            <a href="orderlist?pagenum={{startpage|add:pageblock}}">▶</a>
+					        {% endif %}
+					        </div>
+					        <br><br>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <br><br>
+{% endblock %}

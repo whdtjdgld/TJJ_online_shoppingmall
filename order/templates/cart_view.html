@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+{% load mathfilters %}
+        <!-- Header-->
+        <div class="container">
+             <div class="row">
+                 <div class="col-12">
+                     <div class="card">
+                         <div class="card-body p-0">
+                             <div class="row p-5">
+                                 <div class="col-md-6">
+                                     <img src="/static/img/logo.png">
+                                 </div>
+         
+                                 <div class="col-md-6 text-right">
+                                     <p class="font-weight-bold mb-4">주문자 정보</p>
+                                     <p class="font-weight-bold mb-1">{{member.name}}님 환영합니다.</p>
+                                 	 <p class="mb-1">아이디 : {{member.user_id}}</p>
+                                 	 <p class="mb-1">주소 : 대한민국, {{member.address}}</p>
+                                 	 <p class="mb-1">전화번호 : {{member.tel}}</p>
+                                 	 <p class="mb-1">성별 : {{member.gender}}</p>
+                                 	 <p class="mb-1">생년월일: {{member.birth}}</p>
+                                 </div>
+                             </div>
+         
+                             <hr class="my-5">
+                             <div class="row p-5">
+                                 <div class="col-md-12">
+                                     <table class="table">
+                                         <thead>
+                                             <tr>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">상품코드</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">이미지</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">상품명</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">가격</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">수량</th>
+                                                 <th class="border-0 text-uppercase small font-weight-bold">합계</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                         {% if not cart %}
+                                         	<td>장바구니에 상품이 없습니다. 상품을 추가 해주세요.</td>
+                                         {% endif %}
+                                        {% for i in cart %}
+                                             <tr>
+                                                 <td>{{i.prod_num.pnum}}</td>
+                                                 <td><img src={{i.prod_num.image.url}} width="100" height="100"></td>
+                                                 <td>{{i.prod_num.pname}}</td>
+                                                 <td>{{i.prod_num.price}}원</td>
+                                                 <td>{{i.quan}}
+                                                 <!-- <input type="text" name="amount" value="1" size="3" onchange="change();"> -->
+												 <input type="button" value=" + " onclick="location='add_cart?pnum={{i.prod_num.pnum}}&memid={{memid}}'">
+												 <input type="button" value=" - " onclick="location='minus_cart?pnum={{i.prod_num.pnum}}&memid={{memid}}'">
+                                                 <td>{{i.prod_num.price|mul:i.quan}}원</td>
+                                                 <td><button type="submit" class="btn btn-outline-dark" onclick="location='del_cart?onum={{i.onum}}'">삭제</button></td>
+                                             </tr>
+                                        {% endfor %}
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                             <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                                 <div class="py-3 px-5 text-right">
+                                     <div class="mb-2">총 상품금액</div>
+                                     <div class="h2 font-weight-light">{{total_price}} 원</div>
+                                     {% if j %}
+                                     <input class="btn btn-primary btn-lg btn-block login-button" type="submit" value="결제하기" onclick="order()">
+                                     <script>
+                                     function order(){
+                                    	 alert("결제가 완료 되었습니다.\n구매 내역 페이지로 이동합니다.");
+                                    	 window.location.href = "buy?memid={{memid}}";
+                                     }
+                                     </script>
+                                     {% endif %}
+                                     {% if not j %}
+                                     <input class="btn btn-primary btn-lg btn-block login-button" type="submit" value="결제하기" onclick="product()">
+                                     <script>
+                                     function product(){
+                                    	 alert("장바구니에 상품이 없습니다. 상품을 추가 해주세요.");
+                                    	 window.location.href = "/member/main";
+                                     }
+                                     </script>
+                                     {% endif %}
+                                 </div>
+                                 </div>
+                             </div>
+                             <br><br>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Header-->
+	<header class="bg-dark py-5">
+	    <div class="container px-4 px-lg-5 my-5">
+	        <div class="text-center text-white">
+	            <h1 class="display-4 fw-bolder">B O A R D</h1>
+	            <p class="lead fw-normal text-white-50 mb-0">we provide best thing ever in the world</p>
+	        </div>
+	    </div>
+	</header>
+	<br><br><br><br>
+        <h2 align="center"> 글보기 </h2>
+        <br>
+        <div class="container">
+        <table border="1" class="table" style="text-align:center">
+            <tr>
+                <th style="width:8%"> 글번호 </th>
+                <td style="text-align:center"> {{number}} </td>
+                <th style="width:8%"> 조회수 </th>
+                <td style="text-align:center"> {{dto.readcount}} </td>
+            </tr>        
+            <tr>
+                <th style="width:8%"> 작성자 </th>
+                <td style="text-align:center"> {{dto.writer}} </td>
+                <th style="width:8%"> 작성일 </th>
+                <td style="text-align:center"> {{dto.regdate|date:"Y-m-d"}} </td>
+            </tr>
+            <tr>
+                <th style="width:8%"> 제목 </th>
+                <td colspan="3"> {{dto.subject}} </td>
+            </tr>
+            <tr>
+                <th style="width:8%"> 내용 </th>
+                <td colspan="3"> <pre>{{dto.content}}</pre> </td>
+            </tr>
+        </table>
+        <tr>
+            <th colspan="4">
+            <div align="right">
+                <input type="button" class="btn btn-outline-dark" value="글수정"
+                    onclick="location='boardmodify?num={{dto.num}}&pagenum={{pagenum}}&number={{number}}'">
+                <input type="button" class="btn btn-outline-dark" value="글삭제"
+                    onclick="location='boarddelete?num={{dto.num}}&pagenum={{pagenum}}'">
+                <input type="button" class="btn btn-outline-dark" value="답글"
+                    onclick="location='write?num={{dto.num}}&ref={{dto.ref}}&restep={{dto.restep}}&relevel={{dto.relevel}}'">
+                <input type="button" class="btn btn-outline-dark" value="목록"                    
+                    onclick="location='boardlist?pagenum={{pagenum}}'">
+            </div>
+            </th>
+        </tr>
+        </div>
+        <br><br><br><br>
+{% endblock %}
