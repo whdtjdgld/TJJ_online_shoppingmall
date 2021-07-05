@@ -134,7 +134,7 @@ def writepro( request ) :
         num = 100
     else :    
         num += 1
-    request.session["num"] = num
+    request.session["num"] = num    
     if request.method == "POST" :
         dto = Board(
             num = num,
@@ -205,11 +205,13 @@ def boardmodify( request ) :
         num = request.GET.get( "num" )
         pagenum = request.GET.get( "pagenum" )
         number = request.GET.get( "number" )
+        memid = request.session.get( "memid" )
         template = loader.get_template( "boardmodify.html" )
         context = {
             "num" : num,
             "pagenum" : pagenum,
             "number" : number,
+            "memid":memid
             }        
         return HttpResponse( template.render( context, request ) )
 
@@ -235,6 +237,7 @@ def boarddelete( request ) :
         num = request.POST.get( "num" )
         pagenum = request.POST.get( "pagenum" )
         passwd = request.POST.get( "passwd" )
+        memid = request.session.get( "memid" )
         dto = Board.objects.get( num=num )
         if dto.passwd == passwd :
             dto.subject = "삭제된 글입니다."    
@@ -248,14 +251,17 @@ def boarddelete( request ) :
                 "num" : num,
                 "pagenum" : pagenum,                
                 "message" : "비밀번호가 다릅니다",
+                "memid":memid
                 }        
             return HttpResponse( template.render( context, request ) )
     else :
         num = request.GET.get( "num" )
         pagenum = request.GET.get( "pagenum" )
+        memid = request.session.get( "memid" )
         template = loader.get_template( "boarddelete.html" )
         context = {
             "num" : num,
             "pagenum" : pagenum,
+            "memid":memid
             }        
         return HttpResponse( template.render( context, request ) )

@@ -72,20 +72,6 @@ $(document).ready(
        }
       )
       
-      $("form[name=writeform").on(
-       "submit",
-       function(event) {
-          if($("input[name=subject]").val()==""){
-             alert("제목을 입력하세요.")
-             return false
-          }
-          if($("input[name=content]").val()==""){
-             alert("내용을 입력하세요.")
-             return false
-          }
-       }
-      )
-      
       $("#emailresult").html("&nbsp;이메일을 입력해주세요")
       $("#telresult").html("&nbsp;-는 제외하고 입력해주세요")
       $("input[name=email]").on(

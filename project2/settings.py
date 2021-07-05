@@ -98,16 +98,16 @@ LOGGING = {
     },
     'loggers': {
         # 로거 종류
-        'django': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'ERROR',
-        },
-        'django.request': {
-            'handlers':['file'],
-            'propagate': True,
-            'level':'ERROR',
-        },
+        #'django': {
+            #'handlers': ['file'],
+            #'propagate': True,
+            #'level': 'ERROR',
+        #},
+        #'django.request': {
+            #'handlers':['file'],
+            #'propagate': True,
+            #'level':'ERROR',
+        #},
         # 사용자 APP 지정
         'member': {
             'handlers': ['file'],

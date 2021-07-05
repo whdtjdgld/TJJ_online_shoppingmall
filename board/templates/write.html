@@ -13,7 +13,7 @@
         <h2 align="center" font-family="var(--bs-font-sans-serif)"> 글쓰기 </h2>
         <br>
         <div class="container">
-        <form method="post" action="writepro" name="writeform">
+        <form method="post" action="writepro" name="frm1" onsubmit="return check()">
             {% csrf_token %}
             <input type="hidden" name="num" value="{{num}}">
             <input type="hidden" name="ref" value="{{ref}}">
@@ -42,7 +42,27 @@
             <tr>
                  <th colspan="2"  font-family="var(--bs-font-sans-serif)">
                  <div align="right">
-		        <input type="submit" class="btn btn-outline-dark" value="작성">
+                 <input type="submit" class="btn btn-outline-dark" value="작성">
+		        <script language="JavaScript">
+				function check(){
+					var form=document.frm1;
+						if(form.subject.value=="" || form.content.value=="" || form.passwd.value==""){
+							if(form.subject.value==""){
+								alert("제목을 작성해주세요.");
+								form.subject.focus();
+								return false;
+							}else if(form.content.value==""){
+								alert("내용을 작성해주세요.");
+								form.content.focus();
+								return false;
+							}else if(form.passwd.value==""){
+								alert("비밀번호를 입력해주세요.");
+								form.passwd.focus();
+								return false;
+							}
+						}
+					}
+			    </script>
 		        <input type="reset" class="btn btn-outline-dark" value="취소">
 		        <input type="button" class="btn btn-outline-dark" onclick="location='boardlist'" value="목록">
 		        </div>
