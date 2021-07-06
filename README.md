@@ -1,4 +1,5 @@
 개발IDE : eclipse
+
 개발환경 : django 3.2.3
 
 django framework 를 활용하여 The Joeun Jewerly online shoppingmall 구현
